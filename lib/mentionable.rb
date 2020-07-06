@@ -7,7 +7,9 @@ module Mentionable
 
   def self.included(base)
     base.after_save do
-      send self.class.on_mention, new_mentions if new_mentions?
+      if self.class.class_variable_defined? :@@on_mention
+        send self.class.on_mention, new_mentions if new_mentions?
+      end
     end
     base.extend ClassMethods
   end

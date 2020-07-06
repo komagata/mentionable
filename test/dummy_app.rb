@@ -25,9 +25,13 @@ class Post < ActiveRecord::Base
   end
 end
 
+class User < ActiveRecord::Base
+end
+
 class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
   def self.up
     create_table(:comments) { |t| t.string :body }
     create_table(:posts) { |t| t.string :description }
+    create_table(:users) { |t| t.string :nickname }
   end
 end
