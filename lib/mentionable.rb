@@ -15,7 +15,7 @@ module Mentionable
   end
 
   module ClassMethods
-    def mentionable_as(column, on_mention: :after_mention, regexp: REGEXP)
+    def mentionable_as(column, on_mention: :after_save_mention, regexp: REGEXP)
       klass = name.constantize
       klass.class_variable_set :@@mentionable_name, column
       klass.class_variable_set :@@on_mention, on_mention

@@ -9,7 +9,7 @@ class MentionableTest < ActiveSupport::TestCase
   end
 
   test '.on_mention' do
-    assert_equal :after_mention, Comment.on_mention
+    assert_equal :after_save_mention, Comment.on_mention
     assert_equal :foo, Post.on_mention
   end
 
