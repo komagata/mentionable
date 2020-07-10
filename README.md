@@ -26,8 +26,8 @@ Or install it yourself as:
 class Comment
   mentionable_as :body #, on_mention: :after_save_mention, regexp: /@\w+/
 
-  def after_save_mention(mentions)
-    p mentions # Send notification if you want.
+  def after_save_mention(new_mentions)
+    p new_mentions # Send notification if you want.
   end
 end
 ```
@@ -46,7 +46,7 @@ comment.new_mentions? # => true
 
 comment.update(body: '@nobunaga @hideyosi @ieyasu Hi guys.')
 comment.mentions # => ["@nobunaga", "@hideyosi", "@ieyasu"]
-comment.mentions_ware # => ["@nobunaga", "@hideyosi"]
+comment.mentions_were # => ["@nobunaga", "@hideyosi"]
 comment.new_mentions # => ["@ieyasu"]
 comment.new_mentions? # => true
 ```
