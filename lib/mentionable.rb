@@ -3,7 +3,7 @@
 require 'mentionable/version'
 
 module Mentionable
-  REGEXP = /@\w+/.freeze
+  REGEXP = /@[\w-]+/.freeze
 
   def self.included(base)
     base.after_save do
