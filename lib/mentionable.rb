@@ -6,20 +6,19 @@ module Mentionable
   REGEXP = /@[\w-]+/.freeze
 
   def self.included(base)
-    base.after_save do
-      if self.class.class_variable_defined? :@@on_mention
-        send self.class.on_mention, new_mentions if new_mentions?
-      end
-    end
     base.extend ClassMethods
   end
 
   module ClassMethods
-    def mentionable_as(column, on_mention: :after_save_mention, regexp: REGEXP)
-      klass = name.constantize
-      klass.class_variable_set :@@mentionable_name, column
-      klass.class_variable_set :@@on_mention, on_mention
-      klass.class_variable_set :@@regexp, regexp
+    def mentionable_as(column, on_mention: :after_save_mention, hook_name: :after_save, regexp: REGEXP)
+      class_variable_set :@@mentionable_name, column
+      class_variable_set :@@on_mention, on_mention
+      class_variable_set :@@hook_name, hook_name
+      class_variable_set :@@regexp, regexp
+
+      public_send hook_name do
+        public_send on_mention, new_mentions if new_mentions?
+      end
     end
 
     def mentionable_name

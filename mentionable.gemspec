@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord'
   spec.add_dependency 'railties'
   spec.add_development_dependency 'rails'
+  spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency 'sqlite3'
   spec.add_development_dependency 'test-unit-rails'
 end

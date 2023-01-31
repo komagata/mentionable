@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ```ruby
 class Comment
-  mentionable_as :body #, on_mention: :after_save_mention, regexp: /@\w+/
+  mentionable_as :body #, on_mention: :after_save_mention, hook_name: :after_save, regexp: /@\w+/
 
   def after_save_mention(new_mentions)
     p new_mentions # Send notification if you want.

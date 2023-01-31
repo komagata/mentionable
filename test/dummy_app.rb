@@ -12,15 +12,15 @@ end
 class Comment < ActiveRecord::Base
   mentionable_as :body, on_mention: :after_save_mention, regexp: /@\w+/
 
-  def after_save_mention(mentions)
+  def after_save_mention(_mentions)
     @result = 'ok'
   end
 end
 
 class Post < ActiveRecord::Base
-  mentionable_as :description, on_mention: :foo, regexp: /:\w+/
+  mentionable_as :description, on_mention: :foo, hook_name: :after_commit, regexp: /:\w+/
 
-  def foo(mentions)
+  def foo(_mentions)
     @result = 'ng'
   end
 end
